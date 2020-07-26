@@ -10,6 +10,8 @@ public class AccountOperation {
         this.account = account;
     }
     public void makeDeposit(BigDecimal amount){
+        DepositTransaction transaction = new DepositTransaction();
+        transaction.makeTransaction(amount, account);
     }
 
 }
