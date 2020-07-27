@@ -35,4 +35,21 @@ public class AccountOperationTest {
         accountOperation = new AccountOperation(account);
         accountOperation.makeWithdrawal(BigDecimal.valueOf(300));
     }
+
+    @Test
+    public void check_operation_statistics() throws AccountTransactionException{
+        Account account = new Account();
+        accountOperation = new AccountOperation(account);
+        accountOperation.makeDeposit(BigDecimal.valueOf(100));
+        accountOperation.makeDeposit(BigDecimal.valueOf(150));
+        accountOperation.makeWithdrawal(BigDecimal.valueOf(200));
+        accountOperation.makeWithdrawal(BigDecimal.valueOf(50));
+        accountOperation.makeDeposit(BigDecimal.valueOf(300));
+        assertEquals("Total number transactions is : ",account.getTransactions().size(), 5);
+        assertEquals("Number of credit operation is :", account.numberCreditOperation().get(), 3l);
+        assertEquals("Total of credit operation is ", account.totalCreditTransactions(), BigDecimal.valueOf(550).setScale(2));
+        assertEquals("Number of debit operation is :", account.numberDebitOperation().get(), 2l);
+        assertEquals("Total of debit operation is ", account.totalDebitransactions(), BigDecimal.valueOf(250).setScale(2));
+        assertEquals("Actual account balance :", account.getBalance().setScale(2), BigDecimal.valueOf(300).setScale(2));
+    }
 }

@@ -21,4 +21,19 @@ public class Account {
     private BigDecimal balance = BigDecimal.ZERO;
     private List<Transaction> transactions = new ArrayList<>();
 
+    public BigDecimal totalCreditTransactions(){
+        return BigDecimal.ZERO;
+    }
+
+    public BigDecimal totalDebitransactions(){
+        return BigDecimal.ZERO;
+    }
+
+    public Optional numberCreditOperation(){
+        return Optional.ofNullable(0);
+    }
+    public Optional numberDebitOperation(){
+        return Optional.ofNullable(0);
+    }
+
 }
