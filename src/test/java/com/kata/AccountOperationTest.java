@@ -27,4 +27,12 @@ public class AccountOperationTest {
         accountOperation.makeWithdrawal(BigDecimal.valueOf(100));
         assertEquals(account.getBalance(), BigDecimal.valueOf(200));
     }
+
+    @Test(expected = AccountTransactionException.class)
+    public void withdraw_money_more_than_balance_should_not_pass() throws AccountTransactionException{
+        Account account = new Account();
+        account.setBalance(BigDecimal.valueOf(200));
+        accountOperation = new AccountOperation(account);
+        accountOperation.makeWithdrawal(BigDecimal.valueOf(300));
+    }
 }
