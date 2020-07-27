@@ -22,18 +22,22 @@ public class Account {
     private List<Transaction> transactions = new ArrayList<>();
 
     public BigDecimal totalCreditTransactions(){
-        return BigDecimal.ZERO;
+        Double sum = transactions.stream().filter(t->t.getTypeTransaction().equals(TypeTransaction.Credit)).mapToDouble(t->t.getAmount().doubleValue()).sum();
+        return BigDecimal.valueOf(sum).setScale(2);
     }
 
     public BigDecimal totalDebitransactions(){
-        return BigDecimal.ZERO;
+        Double sum = transactions.stream().filter(t->t.getTypeTransaction().equals(TypeTransaction.Debit)).mapToDouble(t->t.getAmount().doubleValue()).sum();
+        return BigDecimal.valueOf(sum).setScale(2);
     }
 
     public Optional numberCreditOperation(){
-        return Optional.ofNullable(0);
+        long count = transactions.stream().filter(t->t.getTypeTransaction().equals(TypeTransaction.Credit)).count();
+        return Optional.ofNullable(count);
     }
     public Optional numberDebitOperation(){
-        return Optional.ofNullable(0);
+        long count = transactions.stream().filter(t->t.getTypeTransaction().equals(TypeTransaction.Debit)).count();
+        return Optional.ofNullable(count);
     }
 
 }
