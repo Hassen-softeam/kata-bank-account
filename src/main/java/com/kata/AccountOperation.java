@@ -16,5 +16,7 @@ public class AccountOperation {
     }
 
     public void makeWithdrawal(BigDecimal amount) throws AccountTransactionException {
+        WithdrawalTransaction transaction = new WithdrawalTransaction();
+        transaction.makeTransaction(amount, account);
     }
 }
