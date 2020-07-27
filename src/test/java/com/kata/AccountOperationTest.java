@@ -1,5 +1,6 @@
 package com.kata;
 
+import com.kata.exception.AccountTransactionException;
 import com.kata.models.Account;
 import org.junit.Test;
 
@@ -16,5 +17,14 @@ public class AccountOperationTest {
         accountOperation = new AccountOperation(account);
         accountOperation.makeDeposit(BigDecimal.valueOf(100));
         assertEquals(account.getBalance(), BigDecimal.valueOf(100));
+    }
+
+    @Test()
+    public void withdrawal_maney() throws AccountTransactionException {
+        Account account = new Account();
+        account.setBalance(BigDecimal.valueOf(300));
+        accountOperation = new AccountOperation(account);
+        accountOperation.makeWithdrawal(BigDecimal.valueOf(100));
+        assertEquals(account.getBalance(), BigDecimal.valueOf(200));
     }
 }

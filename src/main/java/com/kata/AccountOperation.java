@@ -1,5 +1,6 @@
 package com.kata;
 
+import com.kata.exception.AccountTransactionException;
 import com.kata.models.Account;
 
 import java.math.BigDecimal;
@@ -14,4 +15,6 @@ public class AccountOperation {
         transaction.makeTransaction(amount, account);
     }
 
+    public void makeWithdrawal(BigDecimal amount) throws AccountTransactionException {
+    }
 }
